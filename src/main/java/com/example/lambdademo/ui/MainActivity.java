@@ -1,14 +1,14 @@
-package com.example.lambdademo;
+package com.example.lambdademo.ui;
 
 import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.lambdademo.R;
 
 import rx.Observable;
 import rx.Observer;
