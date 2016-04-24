@@ -11,6 +11,9 @@ import com.example.lambdademo.model.HttpResult;
 import com.example.lambdademo.model.MovieEntity;
 import com.example.lambdademo.MovieService;
 import com.example.lambdademo.R;
+import com.example.lambdademo.model.Subjects;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -114,7 +117,7 @@ public class RxActivity extends AppCompatActivity {
     }
 
     /**
-     * 这里简单的封装了一下RxJava和使用OkHttpClient
+     * 这里简单的封装了一下RxJava和使用OkHttpClient。
      */
     private void getInstanceMovie() {
         Subscriber<HttpResult> subscriber = new Subscriber<HttpResult>() {
@@ -136,4 +139,6 @@ public class RxActivity extends AppCompatActivity {
 
         HttpMethods.getInstance().getTopMovie(subscriber, 0, 10);
     }
+
+
 }
