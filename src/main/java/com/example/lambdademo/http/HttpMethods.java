@@ -1,6 +1,6 @@
 package com.example.lambdademo.http;
 
-import com.example.lambdademo.MovieService;
+import com.example.lambdademo.listener.MovieService;
 import com.example.lambdademo.model.HttpResult;
 import com.example.lambdademo.model.Subjects;
 
@@ -71,7 +71,6 @@ public class HttpMethods {
     }
 
     /**
-     *
      * @param o   观察者
      * @param s   被观察者
      * @param <T>   泛型

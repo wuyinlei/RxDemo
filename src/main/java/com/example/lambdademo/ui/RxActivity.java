@@ -6,11 +6,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.lambdademo.ProgressSubscriber;
-import com.example.lambdademo.SubscriberOnNextListener;
+import com.example.lambdademo.progress.ProgressSubscriber;
+import com.example.lambdademo.listener.SubscriberOnNextListener;
 import com.example.lambdademo.http.HttpMethods;
 import com.example.lambdademo.model.HttpResult;
-import com.example.lambdademo.MovieService;
+import com.example.lambdademo.listener.MovieService;
 import com.example.lambdademo.R;
 import com.example.lambdademo.model.Subjects;
 

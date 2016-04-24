@@ -1,4 +1,4 @@
-package com.example.lambdademo;
+package com.example.lambdademo.listener;
 
 
 public interface SubscriberOnNextListener<T> {

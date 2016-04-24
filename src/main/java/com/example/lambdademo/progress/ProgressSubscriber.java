@@ -1,7 +1,10 @@
-package com.example.lambdademo;
+package com.example.lambdademo.progress;
 
 import android.content.Context;
 import android.widget.Toast;
+
+import com.example.lambdademo.listener.ProgressCancelListener;
+import com.example.lambdademo.listener.SubscriberOnNextListener;
 
 import java.net.ConnectException;
 import java.net.SocketTimeoutException;

@@ -1,4 +1,4 @@
-package com.example.lambdademo;
+package com.example.lambdademo.listener;
 
 /**
  * Created by liukun on 16/3/10.

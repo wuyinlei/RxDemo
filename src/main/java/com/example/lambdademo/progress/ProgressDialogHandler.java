@@ -1,10 +1,12 @@
-package com.example.lambdademo;
+package com.example.lambdademo.progress;
 
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Handler;
 import android.os.Message;
+
+import com.example.lambdademo.listener.ProgressCancelListener;
 
 
 public class ProgressDialogHandler extends Handler {
