@@ -1,6 +1,9 @@
 package com.example.lambdademo;
 
 import com.example.lambdademo.model.HttpResult;
+import com.example.lambdademo.model.Subjects;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -17,4 +20,12 @@ public interface MovieService {
 
     @GET("top250")
     Observable<HttpResult> getTopRxMovie(@Query("start") int start, @Query("count") int count);
+
+    @GET("top250")
+    Observable<HttpResult<List<Subjects>>> getTopRxListMovie(@Query("start") int start, @Query("count") int count);
+
+
+    @GET("top250")
+    Observable<HttpResult<List<Subjects>>> getTopDialogMovie(@Query("start") int start, @Query("count") int count);
+
 }

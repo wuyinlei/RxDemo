@@ -6,9 +6,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lambdademo.ProgressSubscriber;
+import com.example.lambdademo.SubscriberOnNextListener;
 import com.example.lambdademo.http.HttpMethods;
 import com.example.lambdademo.model.HttpResult;
-import com.example.lambdademo.model.MovieEntity;
 import com.example.lambdademo.MovieService;
 import com.example.lambdademo.R;
 import com.example.lambdademo.model.Subjects;
@@ -36,6 +37,8 @@ public class RxActivity extends AppCompatActivity {
     @Bind(R.id.result_TV)
     TextView resultTV;
 
+    private SubscriberOnNextListener getTopMovieOnNext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,12 +46,28 @@ public class RxActivity extends AppCompatActivity {
 
         //绑定布局
         ButterKnife.bind(this);
+
+        getTopMovieOnNext = new SubscriberOnNextListener<List<Subjects>>() {
+            @Override
+            public void onNext(List<Subjects> subjects) {
+                resultTV.setText(subjects.toString());
+            }
+        };
     }
 
     @OnClick(R.id.click_me_BN)
     public void onClick() {
         //getMovie();
-        getRxMovie();
+        //getRxMovie();
+        getDialogMovie();
+    }
+
+
+    //进行网络请求   实现由dialog的网络请求
+    private void getDialogMovie(){
+        HttpMethods.getInstance().getTopMovie(
+                new ProgressSubscriber(getTopMovieOnNext, RxActivity.this),
+                0, 10);
     }
 
     //进行网络的请求  不要忘了添加访问网络的权限

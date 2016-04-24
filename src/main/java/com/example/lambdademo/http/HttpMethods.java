@@ -11,6 +11,7 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
@@ -57,11 +58,29 @@ public class HttpMethods {
     }
 
     public void getTopMovie(Subscriber<HttpResult> subscriber, int start, int count) {
-        mMovieService.getTopRxMovie(start, count)
+       /* mMovieService.getTopRxMovie(start, count)
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(subscriber);
+                .subscribe(subscriber);*/
+
+        Observable observable = mMovieService.getTopDialogMovie(start, count)
+                .map(new HttpResultFunc<List<Subjects>>());
+
+        toSubscribe(observable, subscriber);
+    }
+
+    /**
+     *
+     * @param o   观察者
+     * @param s   被观察者
+     * @param <T>   泛型
+     */
+    private <T> void toSubscribe(Observable<T> o, Subscriber<T> s){
+        o.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s);
     }
 
 
@@ -99,19 +118,23 @@ public class HttpMethods {
     }
 
     /**
-     *
      * @param subscriber   由调用者传过来的观察者对象
      * @param start        起始位置
      * @param count        显示的数据条数
      */
-    public void getTopHttpMovie(Subscriber<List<Subjects>> subscriber, int start, int count) {
-        mMovieService.getTopRxMovie(start, count)
-                .map((Func1<? super HttpResult, ? extends List<Subjects>>) new HttpResultFunc<List<Subjects>>())
+    public void getTopRxListMovie(Subscriber<List<Subjects>> subscriber, int start, int count) {
+        mMovieService.getTopRxListMovie(start, count)
+                .map(new HttpResultFunc<List<Subjects>>())
                 .subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(subscriber);
     }
+
+
+
+
+
 
 
 }
